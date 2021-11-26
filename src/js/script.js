@@ -46,20 +46,5 @@ $(document).ready(function () {
         }
     });
 
-
-
-    // sections.forEach((sct, i) => {
-    
-    // ScrollTrigger.create({
-    //     trigger: sct,
-    //     containerAnimation: scrollTween,
-    //     start: 'left 25%',
-    //     end: 'right 75%',
-    //     toggleClass: {targets: sct, className: "active"},
-
-    // })
-    
-    // });
-
     
 });
