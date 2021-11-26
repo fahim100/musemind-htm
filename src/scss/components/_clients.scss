@@ -1,0 +1,50 @@
+.client{
+    padding: 140px 0;
+    background: $color-white;
+    &Content{
+        &Subtitle{
+            color: $color-secondary-green;
+            text-transform: uppercase;
+            font-size: 20px;
+            line-height: 30px;
+            margin-bottom: 25px;
+            letter-spacing: 5px;
+            font-family: $font-primary-normal;
+        }
+        &Title{
+            color: $color-main-bg;
+            font-size: 70px;
+            line-height: 80px;
+            margin-bottom: 70px;
+            letter-spacing: -2px;
+            font-family: $font-primary-normal;
+            span{
+                color: $color-paragraph-gray;
+            }
+        }
+    }
+    &Logo{
+        margin: 0;
+        padding: 0;
+        &Item{
+            display: inline-flex;
+            list-style: none;
+            &Img{
+                height: 310px;
+                width: 310px;
+                position: relative;
+                margin-left: -25px;
+                margin-right: -25px;
+                border: 1px solid #E8E8E8;
+                border-radius: 50%;
+                img{
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 170px;
+                    transform: translate(-50%, -50%);
+                }
+            }
+        }
+    }
+}

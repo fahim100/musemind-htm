@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'ITC Avant Garde Std Bk';
+    src: url('ITCAvantGardeStd-Demi.woff2') format('woff2'),
+        url('ITCAvantGardeStd-Demi.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+

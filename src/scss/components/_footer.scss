@@ -1,0 +1,129 @@
+.footer{
+    padding: 100px 0 85px 0;
+    &Top{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        &Left{
+            &Logo{
+                font-size: 65px;
+                line-height: 7px;
+                font-family: $font-primary-bold;
+                margin-bottom: 56px;
+                letter-spacing: -2px;
+                color: $color-main-bg;
+            }
+            &Title{
+                font-size: 16px;
+                font-family: $font-secondary-normal;
+                color: $color-main-bg;
+                line-height: 1;
+                margin-bottom: 10px;
+            }
+            &Btn{
+                font-size: 16px;
+                font-family: $font-secondary-normal;
+                color: $color-main-bg;
+                text-decoration: underline;
+            }
+        }
+        &Center{
+            &Menu{
+                margin: 0;
+                padding: 0;
+                li{
+                    display: flex;
+                    flex-direction: column;
+                    &:not(:last-child){
+                        margin-bottom: 15px;
+                    }
+                    a{
+                        font-size: 18px;
+                        font-family: $font-secondary-normal;
+                        line-height: 1;
+                        color: $color-main-bg;
+                        transition: all .3s ease;
+                        &:hover{
+                            font-family: $font-secondary-bold;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+        &Right{
+            h3{
+                font-size: 30px;
+                color: #C6C6C6;
+                font-family: $font-secondary-normal;
+                line-height: 60px;
+            }
+            &Btn{
+                color: $color-main-bg;
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+    &Bottom{
+        margin-top: 100px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: start;
+        &Left{
+            display: flex;
+            align-items: center;
+            &Btn{
+                height: 37px;
+                width: 37px;
+                position: relative;
+                background: $color-main-bg;
+                border-radius: 50%;
+                svg{
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+            }
+            &Contant{
+                margin-left: 14px;
+                h3{
+                    font-size: 16px;
+                    line-height: 20px;
+                    font-family: $font-secondary-normal;
+                    color: $color-main-bg;
+                    margin-bottom: 3px;
+                }
+                p{
+                    font-size: 12px;
+                    line-height: 20px;
+                    font-family: $font-secondary-normal;
+                    color: $color-main-bg;
+                }
+            }
+        }
+        &Center{
+            &Copy{
+                font-size: 16px;
+                font-family: $font-secondary-bold;
+                line-height: 20px;
+                color: $color-main-bg;
+            }
+        }
+        &Right{
+            text-align: right;
+            &Social{
+                margin: 0;
+                padding: 0;
+                li{
+                    list-style: none;
+                    display: inline-block;
+                    &:not(:last-child){
+                        margin-right: 22px;
+                    }
+                }
+            }
+        }
+    }
+}

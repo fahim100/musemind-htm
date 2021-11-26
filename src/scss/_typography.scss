@@ -1,0 +1,104 @@
+@import "mixins";
+
+@font-face {
+  font-family: 'Manrope Bold';
+  src: url('/fonts/Manrope.woff2') format('woff2'),
+      url('/fonts/Manrope-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope Regular';
+  src: url('/fonts/Manrope-Regular.woff2') format('woff2'),
+      url('/fonts/Manrope-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ITC Avant Garde Gothic Std Extra Light';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/ITCAvantGardeStdBk.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'ITC Avant Garde Std Md Bold';
+  src: url('/fonts/ITCAvantGardeStd-Bold.woff2') format('woff2'),
+      url('/fonts/ITCAvantGardeStd-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ITC Avant Garde Std Bk Semi Bold';
+  src: url('/fonts/ITCAvantGardeStd-Demi.woff2') format('woff2'),
+      url('/fonts/ITCAvantGardeStd-Demi.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tobias Regular';
+  src: url('/fonts/tobias-regular-webfont.woff2') format('woff2'),
+       url('/fonts/tobias-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 75px;
+  line-height: 92px;
+  letter-spacing: -3.2px;
+  @include desktop {
+    font-size: 60px;
+    line-height: 70px;
+    letter-spacing: -2px;
+  }
+  @include tablet {
+    font-size: 50px;
+    line-height: 65px;
+  }
+  @include mobile {
+    font-size: 40px;
+    line-height: 50px;
+  }
+}
+
+h2 {
+  font-size: 55px;
+  line-height: 70px;
+  letter-spacing: -3px;
+  @include desktop {
+    font-size: 45px;
+    line-height: 60px;
+  }
+  @include tablet {
+    font-size: 40px;
+    line-height: 50px;
+  }
+  @include mobile {
+    font-size: 36px;
+    line-height: 45px;
+  }
+}
+
+p {
+  font-size: 16px;
+  color: $color-subtext;
+  line-height: 27px;
+}

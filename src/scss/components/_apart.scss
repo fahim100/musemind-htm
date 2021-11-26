@@ -1,0 +1,61 @@
+.apart {
+    padding: 135px 0;
+    text-align: center;
+    background: $color-white;
+    &SubTitle{
+        font-family: $font-primary-light;
+        color: $color-paragraph-gray;
+        font-size: 20px;
+        line-height: 30px;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        margin-bottom: 25px;
+    }
+    &Description{
+        font-size: 50px;
+        font-family: $font-primary-bold;
+        color: $color-main-bg;
+        line-height: 60px;
+        letter-spacing: -2px;
+        margin-bottom: 60px;
+        a{
+            color: $color-secondary-green;
+            position: relative;
+            padding-right: 50px;
+            &::before{
+                position: absolute;
+                content: url('/images/link-icon.svg');
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                height: 50px;
+            }
+        }
+    }
+    &OtherFact{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        li{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &:not(:last-child){
+                margin-right: 55px;
+            }
+            svg{
+                margin-right: 20px;
+            }
+            span{
+                font-size: 24px;
+                font-family: $font-primary-light;
+                line-height: 1;
+                text-transform: uppercase;
+                color: $color-main-bg;
+                letter-spacing: -2px;
+            }
+        }
+    }
+}
