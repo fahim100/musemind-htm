@@ -1,63 +1,64 @@
-.design{
-    padding: 100px 0;
-    overflow: hidden;
-    &Heading{
-        margin-bottom: 80px;
-        &Title{
-            span{
-                font-size: 165px;
-                line-height: 1.4;
-                font-family: $font-primary-bold;
-                color: $color-secondary-green;
-            }
-        }
-        &Title2{
-            span{
-                font-size: 165px;
-                line-height: 1.4;
-                font-family: $font-primary-bold;
-                color: transparent;
-                -webkit-text-stroke: 2px;
-                -webkit-text-stroke-color: #E6E6E6;
-            }
-        }
+.design {
+  padding: 100px 0;
+  overflow: hidden;
+  &Heading {
+    margin-bottom: 80px;
+    &Title {
+      span {
+        font-size: 165px;
+        line-height: 1.4;
+        font-family: $font-primary-bold;
+        color: $color-secondary-green;
+      }
     }
-    &Content{
+    &Title2 {
+      margin-top: -80px;
+      span {
+        font-size: 165px;
+        line-height: 1.4;
+        font-family: $font-primary-bold;
+        color: transparent;
+        -webkit-text-stroke: 2px;
+        -webkit-text-stroke-color: #e6e6e6;
+      }
+    }
+  }
+  &Content {
+    display: flex;
+    align-items: flex-end;
+    padding-left: 100px;
+    padding-top: 100px;
+    &Item {
+      .designContentItemWrapper {
+        width: 400px;
+      }
+      margin-right: 60px;
+      img {
+        width: 100%;
+      }
+      &Tag {
         display: flex;
-        align-items: flex-end;
-        padding-left: 100px;
-        padding-top: 100px;
-        &Item{
-            .designContentItemWrapper{
-                width: 400px;
-            }
-            margin-right: 60px;
-            img{
-                width: 100%;
-            }
-            &Tag{
-                display: flex;
-                align-items: center;
-                margin-top: 40px;
-                margin-bottom: 10px;
-                img{
-                    width: 18px;
-                }
-                &Name{
-                    font-size: 14px;
-                    font-family: $font-secondary-normal;
-                    line-height: 1;
-                    color: $color-paragraph-gray;
-                    margin-left: 7px;
-                    margin-bottom: 0;
-                }
-            }
-            &Title{
-                font-size: 22px;
-                font-family: $font-secondary-bold;
-                color: $color-maintext;
-                line-height: 1.4;
-            }
+        align-items: center;
+        margin-top: 40px;
+        margin-bottom: 10px;
+        img {
+          width: 18px;
         }
+        &Name {
+          font-size: 14px;
+          font-family: $font-secondary-normal;
+          line-height: 1;
+          color: $color-paragraph-gray;
+          margin-left: 7px;
+          margin-bottom: 0;
+        }
+      }
+      &Title {
+        font-size: 22px;
+        font-family: $font-secondary-bold;
+        color: $color-maintext;
+        line-height: 1.4;
+      }
     }
+  }
 }
