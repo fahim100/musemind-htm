@@ -44,7 +44,7 @@ body {
     backface-visibility: hidden;
     pointer-events: none;
     backface-visibility: hidden;
-    mix-blend-mode: difference;
+    // mix-blend-mode: difference;
     transform-origin: center center;
     transition: all 0.5s $site-ease;
     transition-property: transform, border;

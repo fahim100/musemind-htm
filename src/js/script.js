@@ -1,6 +1,96 @@
 $(document).ready(function () {
     'use strict';
 
+    const noise = () => {
+        let canvas, ctx;
+    
+        let wWidth, wHeight;
+    
+        let noiseData = [];
+        let frame = 0;
+    
+        let loopTimeout;
+    
+    
+        // Create Noise
+        const createNoise = () => {
+            const idata = ctx.createImageData(wWidth, wHeight);
+            const buffer32 = new Uint32Array(idata.data.buffer);
+            const len = buffer32.length;
+    
+            for (let i = 0; i < len; i++) {
+                if (Math.random() < 0.5) {
+                    buffer32[i] = 0xff000000;
+                }
+            }
+    
+            noiseData.push(idata);
+        };
+    
+    
+        // Play Noise
+        const paintNoise = () => {
+            if (frame === 9) {
+                frame = 0;
+            } else {
+                frame++;
+            }
+    
+            ctx.putImageData(noiseData[frame], 0, 0);
+        };
+    
+    
+        // Loop
+        const loop = () => {
+            paintNoise(frame);
+    
+            loopTimeout = window.setTimeout(() => {
+                window.requestAnimationFrame(loop);
+            }, (1000 / 25));
+        };
+    
+    
+        // Setup
+        const setup = () => {
+            wWidth = window.innerWidth;
+            wHeight = window.innerHeight;
+    
+            canvas.width = wWidth;
+            canvas.height = wHeight;
+    
+            for (let i = 0; i < 10; i++) {
+                createNoise();
+            }
+    
+            loop();
+        };
+    
+    
+        // Reset
+        let resizeThrottle;
+        const reset = () => {
+            window.addEventListener('resize', () => {
+                window.clearTimeout(resizeThrottle);
+    
+                resizeThrottle = window.setTimeout(() => {
+                    window.clearTimeout(loopTimeout);
+                    setup();
+                }, 200);
+            }, false);
+        };
+    
+    
+        // Init
+        const init = (() => {
+            canvas = document.getElementById('noise');
+            ctx = canvas.getContext('2d');
+    
+            setup();
+        })();
+    };
+    
+    noise();
+
     $(document).on("mousemove mouseenter", function(e) {
         const pointer = $(".pointer");
         const follower = $(".follower");
@@ -16,8 +106,8 @@ $(document).ready(function () {
         });
       });
       
-      // Mouse follower Reverted
-      $('.reverted').on('mouseenter mouseleave', (e)=> {
+      // Mouse follower revert
+      $('.revert').on('mouseenter mouseleave', (e)=> {
         if(e.type == 'mouseenter'){
           $('.follower-wrapper').addClass('revert');
         } else{
@@ -64,24 +154,24 @@ $(document).ready(function () {
     //     hoverstop:false
     // });
 
-    gsap.registerPlugin(ScrollTrigger);
+    // gsap.registerPlugin(ScrollTrigger);
 
-    let sections2 = gsap.utils.toArray(".heroProjectItem");
+    // let sections2 = gsap.utils.toArray(".heroProjectItem");
 
-    let scrollTween2 = gsap.to(sections2, {
-        xPercent: -100 * (sections2.length - 1),
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".heroProject",
-            pin: true,
-            scrub: 1,
-            end: () => "+=" + document.querySelector(".hero").offsetWidth
-        }
-    });
+    // let scrollTween2 = gsap.to(sections2, {
+    //     xPercent: -100 * (sections2.length - 1),
+    //     ease: "none",
+    //     scrollTrigger: {
+    //         trigger: ".heroProject",
+    //         pin: true,
+    //         scrub: 1,
+    //         end: () => "+=" + document.querySelector(".hero").offsetWidth
+    //     }
+    // });
 
-    ScrollTrigger.defaults({
-        markers: false
-    })
+    // ScrollTrigger.defaults({
+    //     markers: false
+    // })
 
     var points = gsap.utils.toArray('.point');
     var indicators = gsap.utils.toArray('.indicator');
@@ -143,18 +233,174 @@ $(document).ready(function () {
         scale: 10
     });
 
-    let sections = gsap.utils.toArray(".designContentItem");
+    // let sections = gsap.utils.toArray(".designContentItem");
 
-    let scrollTween = gsap.to(sections, {
-        xPercent: -100 * (sections.length - 1),
-        ease: "none",
-        scrollTrigger: {
+    // let scrollTween = gsap.to(sections, {
+    //     xPercent: -100 * (sections.length - 1),
+    //     ease: "none",
+    //     scrollTrigger: {
+    //         trigger: ".designContent",
+    //         pin: true,
+    //         scrub: 1,
+    //         end: () => "+=" + document.querySelector(".designContent").offsetWidth
+    //     }
+    // });
+
+    // Dragable Slider js Start
+
+    gsap.registerPlugin(Draggable, InertiaPlugin);
+
+    let slideDelay = 1.5,
+        slideDuration = 0.3,
+        slides = gsap.utils.toArray(".designContentItem"),
+        numSlides = slides.length,
+        progressPerItem = 1 / (numSlides - 1),
+        snapProgress = gsap.utils.snap(progressPerItem),
+        snapProgressDirectional = (value, direction) => {
+            let snapped = snapProgress(value);
+            return (snapped - value < 0) === direction < 0 ? snapped : snapProgress(direction < 0 ? value - progressPerItem : value + progressPerItem);
+        },
+        slideWidth, totalWidth, slideAnimation,
+        animation = gsap.to(slides, {
+            xPercent: "-=" + ((numSlides - 1) * 100),
+            duration: 1,
+            ease: "none",
+            paused: true
+        }),
+        tracker = InertiaPlugin.track(animation, "progress")[0],
+        draggable = new Draggable(document.createElement("div"), { 
             trigger: ".designContent",
-            pin: true,
-            scrub: 1,
-            end: () => "+=" + document.querySelector(".designContent").offsetWidth
+            onPress() {
+                gsap.killTweensOf(animation);
+                this.startProgress = animation.progress();
+            },
+            onDrag() {
+                let change = (draggable.startX - draggable.x) / totalWidth;
+                animation.progress(draggable.startProgress + change);
+            },
+            onRelease() {
+                let velocity = tracker.get("progress");
+                gsap.to(animation, {
+                    inertia: {
+                        duration: {min: 0.5, max: 2},
+                        progress: {velocity: velocity, min: 0, max: 1, end: value => snapProgressDirectional(value, velocity)}
+                    },
+                    overwrite: true
+                })
+            }
+        });
+
+    function animateSlides(direction) {
+        let progress = snapProgress(animation.progress() + direction * progressPerItem);
+        if (progress >= 0 && progress <= 1) {
+            slideAnimation = gsap.to(animation, {
+                progress: progress,
+                duration: slideDuration,
+                overwrite: true,
+            });
         }
-    });
+    }
+
+    function resize() {
+        slideWidth = slides[0].offsetWidth;
+        totalWidth = slideWidth * numSlides;
+    }
+
+    resize();
+
+    window.addEventListener("resize", resize);
+
+// Contact Background Noise
+
+    const noise2 = () => {
+        let canvas, ctx;
+    
+        let wWidth, wHeight;
+    
+        let noiseData = [];
+        let frame = 0;
+    
+        let loopTimeout;
+    
+    
+        // Create Noise
+        const createNoise = () => {
+            const idata = ctx.createImageData(wWidth, wHeight);
+            const buffer32 = new Uint32Array(idata.data.buffer);
+            const len = buffer32.length;
+    
+            for (let i = 0; i < len; i++) {
+                if (Math.random() < 0.5) {
+                    buffer32[i] = 0xff000000;
+                }
+            }
+    
+            noiseData.push(idata);
+        };
+    
+    
+        // Play Noise
+        const paintNoise = () => {
+            if (frame === 9) {
+                frame = 0;
+            } else {
+                frame++;
+            }
+    
+            ctx.putImageData(noiseData[frame], 0, 0);
+        };
+    
+    
+        // Loop
+        const loop = () => {
+            paintNoise(frame);
+    
+            loopTimeout = window.setTimeout(() => {
+                window.requestAnimationFrame(loop);
+            }, (1000 / 25));
+        };
+    
+    
+        // Setup
+        const setup = () => {
+            wWidth = window.innerWidth;
+            wHeight = window.innerHeight;
+    
+            canvas.width = wWidth;
+            canvas.height = wHeight;
+    
+            for (let i = 0; i < 10; i++) {
+                createNoise();
+            }
+    
+            loop();
+        };
+    
+    
+        // Reset
+        let resizeThrottle;
+        const reset = () => {
+            window.addEventListener('resize', () => {
+                window.clearTimeout(resizeThrottle);
+    
+                resizeThrottle = window.setTimeout(() => {
+                    window.clearTimeout(loopTimeout);
+                    setup();
+                }, 200);
+            }, false);
+        };
+    
+    
+        // Init
+        const init = (() => {
+            canvas = document.getElementById('noise2');
+            ctx = canvas.getContext('2d');
+    
+            setup();
+        })();
+    };
+    
+    noise2();
 
 
 });

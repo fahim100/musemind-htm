@@ -4,11 +4,17 @@
   &Heading {
     margin-bottom: 80px;
     &Title {
+      position: relative;
+      z-index: 3;
       span {
         font-size: 165px;
         line-height: 1.4;
         font-family: $font-primary-bold;
         color: $color-secondary-green;
+        margin-right: 50px;
+        &:nth-child(even){
+          color: #7B7B7B33;
+        }
       }
     }
     &Title2 {
@@ -20,6 +26,7 @@
         color: transparent;
         -webkit-text-stroke: 2px;
         -webkit-text-stroke-color: #e6e6e6;
+        margin-right: 50px;
       }
     }
   }
@@ -61,4 +68,33 @@
       }
     }
   }
+  // .slides-container {
+  //   position: relative;
+  //   overflow: hidden;  
+  //   display: flex;
+  //   flex: 1;
+  //   width: 100vw;
+  // height: 100vh;
+  // }
+  
+  // .slide {
+  //   position: absolute;
+  //   font-size: 90px;
+  //   font-weight: 700;
+  //   color: rgba(255,255,255,0.9);
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   height: 100%;
+    
+  //   width: calc(100% / 3);
+  //   width: 100%;
+  // }
+  
+  // .slides-inner {
+  //   position: relative;
+  //   height: 100%;
+  //   width: 100%;  
+  //   overflow: hidden;
+  // }
 }
