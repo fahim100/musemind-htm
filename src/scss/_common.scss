@@ -6,3 +6,61 @@ body {
   padding: 100px 0;
 }
 
+.follower-wrapper{
+  opacity: 0;
+  transition: opacity 0.5s $site-ease;
+  @include desktop{
+    display: none;
+  }
+  .pointer {
+    position: fixed;
+    z-index: 1000000;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: -5px 0 0 -5px;
+    background: rgba($color: $color-white, $alpha: 1);
+    border-radius: 80%;
+    backface-visibility: hidden;
+    pointer-events: none;
+    backface-visibility: hidden;
+    transform-origin: center center;
+    // transition: background 0.5s $site-ease;
+  }
+  .follower{
+    position: fixed;
+    z-index: 1000001;
+    width: 60px;
+    height: 60px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: -5px 0 0 -5px;
+    background: transparent;
+    border: 1px solid rgba($color: $color-white, $alpha: 1);
+    border-radius: 80%;
+    backface-visibility: hidden;
+    pointer-events: none;
+    backface-visibility: hidden;
+    mix-blend-mode: difference;
+    transform-origin: center center;
+    transition: all 0.5s $site-ease;
+    transition-property: transform, border;
+    &.big {
+      transform: translate(-50%, -50%) scale(1.5);
+    }
+  }
+  &.revert{
+    .pointer{
+      background: rgba($color: #122C47, $alpha: 1);
+    }
+    .follower{
+      border: 1px solid rgba($color: #122C47, $alpha: 0.8);
+    }
+  }
+  &.active{
+    opacity: 1;
+  }
+}

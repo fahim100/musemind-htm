@@ -1,6 +1,33 @@
 $(document).ready(function () {
     'use strict';
 
+    $(document).on("mousemove mouseenter", function(e) {
+        const pointer = $(".pointer");
+        const follower = $(".follower");
+        TweenMax.to(pointer, 0.8, {
+          left: e.clientX,
+          top: e.clientY,
+          ease: Expo.easeOut
+        });
+        TweenMax.to(follower, 1.5, {
+          left: e.clientX,
+          top: e.clientY,
+          ease: Expo.easeOut
+        });
+      });
+      
+      // Mouse follower Reverted
+      $('.reverted').on('mouseenter mouseleave', (e)=> {
+        if(e.type == 'mouseenter'){
+          $('.follower-wrapper').addClass('revert');
+        } else{
+          $('.follower-wrapper').removeClass('revert');
+        }
+      })
+      if ($(".follower-wrapper").length > 0) {
+        $(".follower-wrapper").addClass("active");
+    }
+
     $('.clientLogo').liMarquee({
         drag: false,
         hoverstop: false
