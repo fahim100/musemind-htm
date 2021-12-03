@@ -1,22 +1,23 @@
 body {
   background: $color-white;
+  cursor: none;
 }
 
 .section {
   padding: 100px 0;
 }
 
-.follower-wrapper{
+.follower-wrapper {
   opacity: 0;
   transition: opacity 0.5s $site-ease;
-  @include desktop{
+  @include desktop {
     display: none;
   }
   .pointer {
     position: fixed;
     z-index: 1000000;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -28,8 +29,9 @@ body {
     backface-visibility: hidden;
     transform-origin: center center;
     // transition: background 0.5s $site-ease;
+    mix-blend-mode: difference;
   }
-  .follower{
+  .follower {
     position: fixed;
     z-index: 1000001;
     width: 60px;
@@ -48,19 +50,20 @@ body {
     transform-origin: center center;
     transition: all 0.5s $site-ease;
     transition-property: transform, border;
+    mix-blend-mode: difference;
     &.big {
       transform: translate(-50%, -50%) scale(1.5);
     }
   }
-  &.revert{
-    .pointer{
-      background: rgba($color: #122C47, $alpha: 1);
-    }
-    .follower{
-      border: 1px solid rgba($color: #122C47, $alpha: 0.8);
-    }
-  }
-  &.active{
+  // &.revert {
+  //   .pointer {
+  //     background: rgba($color: #122c47, $alpha: 1);
+  //   }
+  //   .follower {
+  //     border: 1px solid rgba($color: #122c47, $alpha: 0.8);
+  //   }
+  // }
+  &.active {
     opacity: 1;
   }
 }

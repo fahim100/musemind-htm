@@ -3,31 +3,31 @@ $(document).ready(function () {
 
     const noise = () => {
         let canvas, ctx;
-    
+
         let wWidth, wHeight;
-    
+
         let noiseData = [];
         let frame = 0;
-    
+
         let loopTimeout;
-    
-    
+
+
         // Create Noise
         const createNoise = () => {
             const idata = ctx.createImageData(wWidth, wHeight);
             const buffer32 = new Uint32Array(idata.data.buffer);
             const len = buffer32.length;
-    
+
             for (let i = 0; i < len; i++) {
                 if (Math.random() < 0.5) {
                     buffer32[i] = 0xff000000;
                 }
             }
-    
+
             noiseData.push(idata);
         };
-    
-    
+
+
         // Play Noise
         const paintNoise = () => {
             if (frame === 9) {
@@ -35,86 +35,86 @@ $(document).ready(function () {
             } else {
                 frame++;
             }
-    
+
             ctx.putImageData(noiseData[frame], 0, 0);
         };
-    
-    
+
+
         // Loop
         const loop = () => {
             paintNoise(frame);
-    
+
             loopTimeout = window.setTimeout(() => {
                 window.requestAnimationFrame(loop);
             }, (1000 / 25));
         };
-    
-    
+
+
         // Setup
         const setup = () => {
             wWidth = window.innerWidth;
             wHeight = window.innerHeight;
-    
+
             canvas.width = wWidth;
             canvas.height = wHeight;
-    
+
             for (let i = 0; i < 10; i++) {
                 createNoise();
             }
-    
+
             loop();
         };
-    
-    
+
+
         // Reset
         let resizeThrottle;
         const reset = () => {
             window.addEventListener('resize', () => {
                 window.clearTimeout(resizeThrottle);
-    
+
                 resizeThrottle = window.setTimeout(() => {
                     window.clearTimeout(loopTimeout);
                     setup();
                 }, 200);
             }, false);
         };
-    
-    
+
+
         // Init
         const init = (() => {
             canvas = document.getElementById('noise');
             ctx = canvas.getContext('2d');
-    
+
             setup();
         })();
     };
-    
+
     noise();
 
-    $(document).on("mousemove mouseenter", function(e) {
+    $(document).on("mousemove mouseenter", function (e) {
         const pointer = $(".pointer");
         const follower = $(".follower");
         TweenMax.to(pointer, 0.8, {
-          left: e.clientX,
-          top: e.clientY,
-          ease: Expo.easeOut
+            left: e.clientX,
+            top: e.clientY,
+            ease: Expo.easeOut
         });
         TweenMax.to(follower, 1.5, {
-          left: e.clientX,
-          top: e.clientY,
-          ease: Expo.easeOut
+            left: e.clientX,
+            top: e.clientY,
+            ease: Expo.easeOut
         });
-      });
-      
-      // Mouse follower revert
-      $('.revert').on('mouseenter mouseleave', (e)=> {
-        if(e.type == 'mouseenter'){
-          $('.follower-wrapper').addClass('revert');
-        } else{
-          $('.follower-wrapper').removeClass('revert');
+    });
+
+    // Mouse follower revert
+    $('.revert').on('mouseenter mouseleave', (e) => {
+        if (e.type == 'mouseenter') {
+            $('.follower-wrapper').addClass('revert');
+        } else {
+            $('.follower-wrapper').removeClass('revert');
         }
-      })
-      if ($(".follower-wrapper").length > 0) {
+    })
+    if ($(".follower-wrapper").length > 0) {
         $(".follower-wrapper").addClass("active");
     }
 
@@ -221,7 +221,22 @@ $(document).ready(function () {
 
     });
 
-    gsap.to(".teamOverlayImg", {
+    // gsap.to(".teamOverlayImg", {
+    //     scrollTrigger: {
+    //         trigger: ".team",
+    //         scrub: 1,
+    //         start: "top top",
+    //         end: "bottom -100%",
+    //         ease: "power2",
+    //         pin: true,
+    //     },
+    //     scale: 40
+    // }).to(".teamBackgroundContent", {
+    //     scale: 1,
+    //     opacity: 1,
+    // }, 0);
+
+    var teamTimeline = gsap.timeline({
         scrollTrigger: {
             trigger: ".team",
             scrub: 1,
@@ -229,9 +244,14 @@ $(document).ready(function () {
             end: "bottom -100%",
             ease: "power2",
             pin: true,
-        },
-        scale: 10
-    });
+        }
+    }).to('.teamOverlayImg', {
+        scale: 40,
+        opacity: 0
+    }).to(".teamBackgroundContent", {
+        opacity: 1,
+    }, 0);
+
 
     // let sections = gsap.utils.toArray(".designContentItem");
 
@@ -268,7 +288,7 @@ $(document).ready(function () {
             paused: true
         }),
         tracker = InertiaPlugin.track(animation, "progress")[0],
-        draggable = new Draggable(document.createElement("div"), { 
+        draggable = new Draggable(document.createElement("div"), {
             trigger: ".designContent",
             onPress() {
                 gsap.killTweensOf(animation);
@@ -282,8 +302,8 @@ $(document).ready(function () {
                 let velocity = tracker.get("progress");
                 gsap.to(animation, {
                     inertia: {
-                        duration: {min: 0.5, max: 2},
-                        progress: {velocity: velocity, min: 0, max: 1, end: value => snapProgressDirectional(value, velocity)}
+                        duration: { min: 0.5, max: 2 },
+                        progress: { velocity: velocity, min: 0, max: 1, end: value => snapProgressDirectional(value, velocity) }
                     },
                     overwrite: true
                 })
@@ -310,35 +330,35 @@ $(document).ready(function () {
 
     window.addEventListener("resize", resize);
 
-// Contact Background Noise
+    // Contact Background Noise
 
     const noise2 = () => {
         let canvas, ctx;
-    
+
         let wWidth, wHeight;
-    
+
         let noiseData = [];
         let frame = 0;
-    
+
         let loopTimeout;
-    
-    
+
+
         // Create Noise
         const createNoise = () => {
             const idata = ctx.createImageData(wWidth, wHeight);
             const buffer32 = new Uint32Array(idata.data.buffer);
             const len = buffer32.length;
-    
+
             for (let i = 0; i < len; i++) {
                 if (Math.random() < 0.5) {
                     buffer32[i] = 0xff000000;
                 }
             }
-    
+
             noiseData.push(idata);
         };
-    
-    
+
+
         // Play Noise
         const paintNoise = () => {
             if (frame === 9) {
@@ -346,60 +366,60 @@ $(document).ready(function () {
             } else {
                 frame++;
             }
-    
+
             ctx.putImageData(noiseData[frame], 0, 0);
         };
-    
-    
+
+
         // Loop
         const loop = () => {
             paintNoise(frame);
-    
+
             loopTimeout = window.setTimeout(() => {
                 window.requestAnimationFrame(loop);
             }, (1000 / 25));
         };
-    
-    
+
+
         // Setup
         const setup = () => {
             wWidth = window.innerWidth;
             wHeight = window.innerHeight;
-    
+
             canvas.width = wWidth;
             canvas.height = wHeight;
-    
+
             for (let i = 0; i < 10; i++) {
                 createNoise();
             }
-    
+
             loop();
         };
-    
-    
+
+
         // Reset
         let resizeThrottle;
         const reset = () => {
             window.addEventListener('resize', () => {
                 window.clearTimeout(resizeThrottle);
-    
+
                 resizeThrottle = window.setTimeout(() => {
                     window.clearTimeout(loopTimeout);
                     setup();
                 }, 200);
             }, false);
         };
-    
-    
+
+
         // Init
         const init = (() => {
             canvas = document.getElementById('noise2');
             ctx = canvas.getContext('2d');
-    
+
             setup();
         })();
     };
-    
+
     noise2();
 
 
