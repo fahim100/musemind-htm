@@ -1,0 +1,40 @@
+.btnanim{
+    position: relative;
+    z-index: 1;
+}
+.btnanim:before {
+    height:100%;
+    width: 100%;
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    transform: scale(0);
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+    transform-origin: center center;
+    z-index: -1;
+}
+.btnanim:hover:before {
+    transform: scale(1);
+}
+.btnSquare{
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.btnSquare span {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-radius: 100%;
+    background-color: #ffffff;
+    transition: all .3s ease;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+.btnSquare:hover span {
+    width: 600px;
+    height: 600px;
+}

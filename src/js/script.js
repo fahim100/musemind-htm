@@ -1,6 +1,30 @@
 $(document).ready(function () {
     'use strict';
 
+    $('.btnSquare').on('mouseenter', function(e) {
+		
+		var presentOfset = $(this).offset(),
+			relX = e.pageX - presentOfset.left,
+			relY = e.pageY - presentOfset.top;
+
+
+		$(this).find('span').css({
+			top: relY,
+			left: relX,
+		});
+	});
+	$('.btnSquare').on('mouseout', function(e) {
+		
+		var presentOfset = $(this).offset(),
+			relX = e.pageX - presentOfset.left,
+			relY = e.pageY - presentOfset.top;
+
+		$(this).find('span').css({
+			top: relY,
+			left: relX,
+		});
+	});
+
     const noise = () => {
         let canvas, ctx;
 
