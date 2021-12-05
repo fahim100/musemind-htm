@@ -294,67 +294,15 @@ $(document).ready(function () {
 
     // Dragable Slider js Start
 
-    gsap.registerPlugin(Draggable, InertiaPlugin);
-
-    let slideDelay = 1.5,
-        slideDuration = 0.3,
-        slides = gsap.utils.toArray(".designContentItem"),
-        numSlides = slides.length,
-        progressPerItem = 1 / (numSlides - 1),
-        snapProgress = gsap.utils.snap(progressPerItem),
-        snapProgressDirectional = (value, direction) => {
-            let snapped = snapProgress(value);
-            return (snapped - value < 0) === direction < 0 ? snapped : snapProgress(direction < 0 ? value - progressPerItem : value + progressPerItem);
-        },
-        slideWidth, totalWidth, slideAnimation,
-        animation = gsap.to(slides, {
-            xPercent: "-=" + ((numSlides - 1) * 100),
-            duration: 1,
-            ease: "none",
-            paused: true
-        }),
-        tracker = InertiaPlugin.track(animation, "progress")[0],
-        draggable = new Draggable(document.createElement("div"), {
-            trigger: ".designContent",
-            onPress() {
-                gsap.killTweensOf(animation);
-                this.startProgress = animation.progress();
-            },
-            onDrag() {
-                let change = (draggable.startX - draggable.x) / totalWidth;
-                animation.progress(draggable.startProgress + change);
-            },
-            onRelease() {
-                let velocity = tracker.get("progress");
-                gsap.to(animation, {
-                    inertia: {
-                        duration: { min: 0.5, max: 2 },
-                        progress: { velocity: velocity, min: 0, max: 1, end: value => snapProgressDirectional(value, velocity) }
-                    },
-                    overwrite: true
-                })
-            }
-        });
-
-    function animateSlides(direction) {
-        let progress = snapProgress(animation.progress() + direction * progressPerItem);
-        if (progress >= 0 && progress <= 1) {
-            slideAnimation = gsap.to(animation, {
-                progress: progress,
-                duration: slideDuration,
-                overwrite: true,
-            });
-        }
-    }
-
-    function resize() {
-        slideWidth = slides[0].offsetWidth;
-        totalWidth = slideWidth * numSlides;
-    }
-
-    resize();
-
-    window.addEventListener("resize", resize);
+    $('.designContent').slick({
+        dots: false,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 3,
+        slidesToScroll: 4,
+        arrows: false,
+        autoPlay: false
+      });
 
     // Contact Background Noise
 

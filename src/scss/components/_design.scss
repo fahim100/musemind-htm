@@ -36,9 +36,9 @@
     padding-left: 100px;
     padding-top: 100px;
     &Item {
-      .designContentItemWrapper {
+      // .designContentItemWrapper {
         width: 400px;
-      }
+      // }
       margin-right: 60px;
       img {
         width: 100%;
@@ -68,4 +68,10 @@
       }
     }
   }
+}
+.slick-list{
+  overflow: scroll;
+}
+.slick-list::-webkit-scrollbar {
+  display: none;
 }
