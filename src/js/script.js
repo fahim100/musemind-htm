@@ -1,6 +1,8 @@
 $(document).ready(function () {
     'use strict';
 
+    AOS.init();
+
     $('.btnSquare').on('mouseenter', function(e) {
 		
 		var presentOfset = $(this).offset(),
