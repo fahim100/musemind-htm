@@ -1,8 +1,9 @@
-.btnanim{
+.btnCircle{
     position: relative;
     z-index: 1;
+    overflow: hidden;
 }
-.btnanim:before {
+.btnCircle:before {
     height:100%;
     width: 100%;
     position: absolute;
@@ -10,12 +11,13 @@
     left: 0;
     top: 0;
     transform: scale(0);
-    background-color: #ffffff;
+    background-color: #101010;
     transition: all 0.3s ease;
     transform-origin: center center;
     z-index: -1;
+    border-radius: 100%;
 }
-.btnanim:hover:before {
+.btnCircle:hover:before {
     transform: scale(1);
 }
 .btnSquare{
@@ -30,7 +32,7 @@
     height: 0;
     border-radius: 100%;
     background-color: #ffffff;
-    transition: all .3s ease;
+    transition: all .5s ease;
     transform: translate(-50%, -50%);
     z-index: -1;
 }

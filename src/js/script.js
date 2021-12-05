@@ -173,6 +173,8 @@ $(document).ready(function () {
         hoverstop: false,
         direction: 'right'
     });
+
+    $(".icon").fancybox();
     // $('.designContent').liMarquee({
     //     drag: false,
     //     hoverstop:false

@@ -99,6 +99,30 @@
   //     }
   //   }
   // }
+  .scrollButton{
+    position: absolute;
+    right: 200px;
+    z-index: 1;
+    bottom: 220px;
+    a{
+      height: 150px;
+      width: 150px;
+      display: inline-block;
+      position: relative;
+      background: $color-secondary-green;
+      border-radius: 50%;
+      transition: all .3s ease;
+      svg{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+      }
+    }
+    .btnCircle:before{
+      background-color: #ffffff;
+    }
+  }
   &Project {
     display: flex;
     align-items: flex-end;
