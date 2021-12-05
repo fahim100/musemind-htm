@@ -3,6 +3,25 @@ $(document).ready(function () {
 
     AOS.init();
 
+    var heroTimeline = new TimelineMax, 
+        mySplitText = new SplitText(".heroTitle", {type:"words"}), 
+        chars = mySplitText.words; 
+        heroTimeline.staggerFrom(chars, 1, 
+          {
+            opacity:0, 
+            y:80,  ease:Power3.easeOut
+          }, 0.2, "+=0");
+
+    var heroDescription = new TimelineMax, 
+        mySplitText = new SplitText(".heroDescription", {type:"words"}), 
+        chars = mySplitText.words; 
+        heroDescription.staggerFrom(chars, 1, 
+          {
+            opacity:0, 
+            y:80,  ease:Power3.easeOut
+          }, 0.2, "+=0");
+    // heroTimeline.pause();
+
     $('.btnSquare').on('mouseenter', function(e) {
 		
 		var presentOfset = $(this).offset(),
