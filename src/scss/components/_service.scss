@@ -57,6 +57,16 @@
           margin-left: 10px;
           path {
             fill: $color-white;
+            transition: all .3s ease;
+          }
+        }
+        &:hover{
+          text-decoration: none;
+          color: #101010;
+          svg{
+            path{
+              fill: #101010;
+            }
           }
         }
       }
