@@ -163,6 +163,24 @@ $(document).ready(function () {
         $(".follower-wrapper").addClass("active");
     }
 
+    // hero parallax
+    var scene = document.getElementById('scene');
+    var parallaxInstance = new Parallax(scene);
+    var scene1 = document.getElementById('scene1');
+    var parallaxInstance1 = new Parallax(scene1);
+
+    $('#heroSection').mousemove(function(e) {
+        var x = e.clientX;
+        var y = e.clientY;
+        if( x < ( $(document).width()/2 ) ){
+            $('.leftText').addClass('active');
+            $('.rightText').removeClass('active');
+        } else {
+            $('.leftText').removeClass('active');
+            $('.rightText').addClass('active');
+        }
+    });
+
     $('.clientLogo').liMarquee({
         drag: false,
         hoverstop: false

@@ -4,6 +4,23 @@
   padding: 9em 0 3em 0;
   position: relative;
   height: 100vh;
+  .backgroundSVG{
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 1;
+    height: 700px;
+    width: 700px;
+    @include desktop-xl{
+      height: 500px;
+      width: 500px;
+    }
+    svg{
+      height: 100%;
+      width: 100%;
+    }
+  }
   #noise {
     width: 100%;
     height: 100%;
@@ -18,17 +35,33 @@
   }
   &Content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
   &Title {
-    font-size: 120px;
+    font-size: 170px;
     color: $color-white;
     white-space: nowrap;
     margin: 0;
-    font-family: $font-primary-normal;
+    font-family: $font-primary-bold;
     letter-spacing: 2px;
+    display: flex;
+    @include desktop-xl{
+      font-size: 130px;
+    }
     span {
-      &:last-child {
+      display: block;
+      position: unset !important;
+      transition: all .3s ease;
+    }
+    .leftText{
+      margin-right: 15px;
+      &.active{
+        color: $color-paragraph-gray;
+      }
+    }
+    .rightText{
+      margin-left: 15px;
+      &.active{
         color: $color-paragraph-gray;
       }
     }
@@ -102,7 +135,7 @@
   .scrollButton{
     position: absolute;
     right: 200px;
-    z-index: 1;
+    z-index: 2;
     bottom: 220px;
     a{
       height: 150px;
