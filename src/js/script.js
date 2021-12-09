@@ -22,29 +22,29 @@ $(document).ready(function () {
     //       }, 0.2, "+=0");
     // heroTimeline.pause();
 
-    $('.btnSquare').on('mouseenter', function(e) {
-		
-		var presentOfset = $(this).offset(),
-			relX = e.pageX - presentOfset.left,
-			relY = e.pageY - presentOfset.top;
+    $('.btnSquare').on('mouseenter', function (e) {
+
+        var presentOfset = $(this).offset(),
+            relX = e.pageX - presentOfset.left,
+            relY = e.pageY - presentOfset.top;
 
 
-		$(this).find('span').css({
-			top: relY,
-			left: relX,
-		});
-	});
-	$('.btnSquare').on('mouseout', function(e) {
-		
-		var presentOfset = $(this).offset(),
-			relX = e.pageX - presentOfset.left,
-			relY = e.pageY - presentOfset.top;
+        $(this).find('span').css({
+            top: relY,
+            left: relX,
+        });
+    });
+    $('.btnSquare').on('mouseout', function (e) {
 
-		$(this).find('span').css({
-			top: relY,
-			left: relX,
-		});
-	});
+        var presentOfset = $(this).offset(),
+            relX = e.pageX - presentOfset.left,
+            relY = e.pageY - presentOfset.top;
+
+        $(this).find('span').css({
+            top: relY,
+            left: relX,
+        });
+    });
 
     const noise = () => {
         let canvas, ctx;
@@ -166,13 +166,13 @@ $(document).ready(function () {
     // hero parallax
     var scene = document.getElementById('scene');
     var parallaxInstance = new Parallax(scene);
-    var scene1 = document.getElementById('scene1');
-    var parallaxInstance1 = new Parallax(scene1);
+    // var scene1 = document.getElementById('scene1');
+    // var parallaxInstance1 = new Parallax(scene1);
 
-    $('#heroSection').mousemove(function(e) {
+    $('#heroSection').mousemove(function (e) {
         var x = e.clientX;
         var y = e.clientY;
-        if( x < ( $(document).width()/2 ) ){
+        if (x < ($(document).width() / 2)) {
             $('.leftText').addClass('active');
             $('.rightText').removeClass('active');
         } else {
@@ -341,7 +341,7 @@ $(document).ready(function () {
         slidesToScroll: 4,
         arrows: false,
         autoPlay: false
-      });
+    });
 
     // Contact Background Noise
 
