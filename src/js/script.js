@@ -46,6 +46,15 @@ $(document).ready(function () {
         });
     });
 
+    $('.nav-action').on('click', function(){
+        $('.navigation').addClass('nav-active');
+        $('.navigation-menu').addClass('nav-active');
+    });
+    $('.navigation-menu-close').on('click', function(){
+        $('.navigation').removeClass('nav-active');
+        $('.navigation-menu').removeClass('nav-active');
+    });
+
     const noise = () => {
         let canvas, ctx;
 
@@ -211,6 +220,10 @@ $(document).ready(function () {
         drag: false,
         hoverstop: false,
         direction: 'right'
+    });
+    $('.nav-contact-wrapper').liMarquee({
+        drag: false,
+        hoverstop: false,
     });
 
     $(".icon").fancybox();
